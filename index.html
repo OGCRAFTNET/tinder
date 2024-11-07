@@ -138,6 +138,17 @@
             font-size: 24px;
             color: #555;
         }
+
+        /* Erfolgreich-Nachricht */
+        .success-message {
+            display: none;
+            font-size: 18px;
+            color: #ff5864;
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
     </style>
 </head>
 <body>
@@ -147,7 +158,7 @@
     <img src="https://logos-world.net/wp-content/uploads/2020/09/Tinder-Logo-700x394.png" alt="Tinder Logo" class="logo">
 
     <h2>Konto erstellen</h2>
-    <form>
+    <form id="registrationForm" onsubmit="submitForm(event)">
         <!-- Vorname -->
         <div class="form-group">
             <label for="vorname">Vorname</label>
@@ -217,6 +228,9 @@
         <!-- Weiter Button -->
         <button type="submit" class="button">Weiter</button>
     </form>
+
+    <!-- Erfolgreich erstellt Nachricht -->
+    <div class="success-message" id="successMessage">Konto erfolgreich erstellt!</div>
 </div>
 
 <script>
@@ -232,6 +246,20 @@
             };
             reader.readAsDataURL(file);
         }
+    }
+
+    function submitForm(event) {
+        event.preventDefault(); // Verhindert das Standard-Formularverhalten
+
+        // Zeigt die Erfolgsnachricht an und startet die Animation
+        const successMessage = document.getElementById("successMessage");
+        successMessage.style.display = "block";
+        successMessage.style.opacity = "1";
+
+        // Leitet nach 2 Sekunden zur gewünschten URL weiter
+        setTimeout(() => {
+            window.location.href = "https://tinder.com/de";
+        }, 2000);
     }
 </script>
 
