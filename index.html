@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konto erstellen - Tinder</title>
+    <style>
+        /* Basis-Layout und Farben */
+        body {
+            background-color: #1c1c1c;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #1c1c1c;
+            padding: 20px;
+            width: 500px;
+            max-width: 100%;
+        }
+
+        .logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            background-color: #333;
+            border: 1px solid #555;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .form-group .radio-group,
+        .form-group .checkbox-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-group .radio-group label,
+        .form-group .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input[type="radio"],
+        .form-group input[type="checkbox"] {
+            accent-color: #ff5864;
+        }
+
+        .button {
+            display: block;
+            background-color: #ff5864;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #ff6e7d;
+        }
+
+        .profile-photos {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .photo {
+            width: 80px;
+            height: 100px;
+            background-color: #333;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #555;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .photo input[type="file"] {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .photo .placeholder {
+            position: absolute;
+            font-size: 24px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Tinder Logo -->
+    <img src="https://logos-world.net/wp-content/uploads/2020/09/Tinder-Logo-700x394.png" alt="Tinder Logo" class="logo">
+
+    <h2>Konto erstellen</h2>
+    <form>
+        <!-- Vorname -->
+        <div class="form-group">
+            <label for="vorname">Vorname</label>
+            <input type="text" id="vorname" name="vorname" required>
+        </div>
+
+        <!-- E-Mail -->
+        <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <!-- Geburtstag -->
+        <div class="form-group">
+            <label>Geburtstag</label>
+            <div class="radio-group">
+                <input type="number" placeholder="Tag" min="1" max="31" required style="width: 30%;">
+                <input type="number" placeholder="Monat" min="1" max="12" required style="width: 30%;">
+                <input type="number" placeholder="Jahr" min="1900" max="2024" required style="width: 30%;">
+            </div>
+        </div>
+
+        <!-- Geschlecht -->
+        <div class="form-group">
+            <label>Geschlecht</label>
+            <div class="radio-group">
+                <label><input type="radio" name="gender" value="Mann" required> Mann</label>
+                <label><input type="radio" name="gender" value="Frau"> Frau</label>
+                <label><input type="radio" name="gender" value="Genderqueer"> Genderqueer</label>
+            </div>
+        </div>
+
+        <!-- Interesse an -->
+        <div class="form-group">
+            <label>Interessiert an</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="interest" value="Männer"> Männer</label>
+                <label><input type="checkbox" name="interest" value="Frauen"> Frauen</label>
+                <label><input type="checkbox" name="interest" value="Alle"> Alle</label>
+            </div>
+        </div>
+
+        <!-- Profilfotos Upload -->
+        <div class="profile-photos">
+            <div class="photo">
+                <div class="placeholder">+</div>
+                <input type="file" accept="image/*" onchange="previewImage(this)">
+                <img src="" alt="Profilbild 1">
+            </div>
+            <div class="photo">
+                <div class="placeholder">+</div>
+                <input type="file" accept="image/*" onchange="previewImage(this)">
+                <img src="" alt="Profilbild 2">
+            </div>
+            <div class="photo">
+                <div class="placeholder">+</div>
+                <input type="file" accept="image/*" onchange="previewImage(this)">
+                <img src="" alt="Profilbild 3">
+            </div>
+            <div class="photo">
+                <div class="placeholder">+</div>
+                <input type="file" accept="image/*" onchange="previewImage(this)">
+                <img src="" alt="Profilbild 4">
+            </div>
+        </div>
+
+        <!-- Weiter Button -->
+        <button type="submit" class="button">Weiter</button>
+    </form>
+</div>
+
+<script>
+    function previewImage(input) {
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = input.nextElementSibling;
+                img.src = e.target.result;
+                img.style.display = "block";
+                input.previousElementSibling.style.display = "none";
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+
+</body>
+</html>
